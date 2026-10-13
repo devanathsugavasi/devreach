@@ -1,0 +1,63 @@
+name: Bug report
+description: A skill didn't install, didn't trigger, or produced bad or unsafe output.
+labels: [bug]
+body:
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Skill
+      options:
+        - project-to-post
+        - developer-profile
+        - technical-storyteller
+        - content-planner
+        - multi-platform-content
+        - launch-announcement
+        - community-launch
+        - open-source-growth
+        - community-engagement
+        - outreach-writer
+        - audience-research
+        - growth-review
+        - Installation / repository tooling
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What went wrong?
+      options:
+        - Installation failed
+        - Skill didn't trigger
+        - Invented facts or claims
+        - Unsafe behavior (posted, sent, leaked data)
+        - Output was low quality or wrong format
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: prompt
+    attributes:
+      label: Prompt you used
+      description: Remove any personal or confidential information.
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: What happened
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+  - type: input
+    id: version
+    attributes:
+      label: Claude Code version
+      description: Output of `claude --version`
+  - type: input
+    id: os
+    attributes:
+      label: Operating system

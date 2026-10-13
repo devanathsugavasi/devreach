@@ -1,0 +1,22 @@
+name: Contribution idea
+description: Propose an improvement to an existing skill, example, evaluation case, or the tooling.
+labels: [enhancement]
+body:
+  - type: input
+    id: area
+    attributes:
+      label: Area
+      description: Skill name, file, or "tooling"
+    validations:
+      required: true
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you change?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Why
+      description: An output that went wrong, a missing case, or user feedback helps a lot.

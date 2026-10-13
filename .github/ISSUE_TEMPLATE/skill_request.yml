@@ -1,0 +1,32 @@
+name: Skill request
+description: Suggest a new developer-growth workflow that could become a skill.
+labels: [skill-request]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What problem does it solve?
+      description: Describe the situation a developer is in when they'd use this skill.
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Example request
+      description: What would someone type to Claude Code to trigger it?
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: What a good output looks like
+  - type: textarea
+    id: overlap
+    attributes:
+      label: Why existing skills don't cover it
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Contribution
+      options:
+        - label: I'd like to write this skill myself
