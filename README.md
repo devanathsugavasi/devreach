@@ -180,6 +180,8 @@ Known limitations:
 
 ## Contributing
 
+**Tried a skill?** A two-minute [tester report](https://github.com/devanathsugavasi/devreach/issues/new?template=tester_report.yml) is the most useful thing you can send.
+
 Contributions are welcome — especially evaluation runs and real-world examples. Read [CONTRIBUTING.md](CONTRIBUTING.md), then pick an issue labeled `good first issue` or [request a skill](https://github.com/devanathsugavasi/devreach/issues/new?template=skill_request.yml).
 
 - [Roadmap](ROADMAP.md) · [Changelog](CHANGELOG.md) · [Support](SUPPORT.md) · [Security](SECURITY.md) · [Code of Conduct](CODE_OF_CONDUCT.md)

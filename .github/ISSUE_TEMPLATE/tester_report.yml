@@ -1,0 +1,64 @@
+name: Tester report
+description: You tried a skill on a real project. Tell us what worked and what it made up.
+labels: [tester-report]
+body:
+  - type: markdown
+    attributes:
+      value: Thanks for testing DevReach. Remove any personal or confidential details before posting.
+  - type: dropdown
+    id: skill
+    attributes:
+      label: Skill you tried
+      options:
+        - project-to-post
+        - developer-profile
+        - technical-storyteller
+        - content-planner
+        - multi-platform-content
+        - launch-announcement
+        - community-launch
+        - open-source-growth
+        - community-engagement
+        - outreach-writer
+        - audience-research
+        - growth-review
+    validations:
+      required: true
+  - type: dropdown
+    id: install
+    attributes:
+      label: How did you install it?
+      options:
+        - Plugin (/plugin install)
+        - install.sh
+        - Copied the folder by hand
+    validations:
+      required: true
+  - type: dropdown
+    id: useful
+    attributes:
+      label: Would you use the output (after edits)?
+      options:
+        - Yes, with light edits
+        - Yes, after heavy edits
+        - No
+    validations:
+      required: true
+  - type: textarea
+    id: worked
+    attributes:
+      label: What worked
+  - type: textarea
+    id: invented
+    attributes:
+      label: Anything it made up or got wrong
+      description: Quote the sentence if you can. This is the most useful part of the report.
+  - type: textarea
+    id: wish
+    attributes:
+      label: What you wish it did
+  - type: input
+    id: version
+    attributes:
+      label: Claude Code version
+      description: Output of `claude --version`
