@@ -41,3 +41,18 @@ General norms for common developer venues. **Rules change and every sub-communit
 
 - Awesome-lists: open a PR only if the project meets the list's stated criteria.
 - Discussions in related projects: only if your tool directly helps with a problem being discussed, and disclose that you built it.
+
+## Bluesky
+
+- Tech and open-source communities are active, particularly around topic-specific custom feeds (e.g. dev feeds, language feeds).
+- Self-promotion is generally well-received when framed as "here is what I built and what I learned" rather than corporate broadcast marketing.
+- Hashtags and custom feeds help discovery, but avoid tag stuffing; 1–3 relevant tags or posting directly to relevant topic feeds is sufficient.
+- Engaging in replies, sharing screenshots or short demo clips, and crediting upstream libraries works better than pure link drops.
+
+## Mastodon / Fediverse
+
+- Community norms vary widely across instances: always check the instance's local rules and code of conduct regarding self-promotion before posting.
+- Many instances prefer self-promotion posts to include `#introduction` or clear topical hashtags (e.g. `#opensource`, `#rust`, `#python`), and some encourage setting content warnings (CW) for promotional material.
+- The culture strongly dislikes corporate marketing, aggressive engagement farming, uncaptioned images (always add alt text to screenshots), and unsolicited @-mentions.
+- Genuine technical write-ups and open-source releases with public source code receive a much warmer reception than closed products or waitlists.
+
