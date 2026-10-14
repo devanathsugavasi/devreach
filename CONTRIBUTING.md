@@ -2,7 +2,7 @@
 
 Thanks for helping. The most valuable contributions right now are, in order:
 
-1. **Evaluation runs** — run the cases in [`evals/cases/`](evals/cases/) and report scores and bad outputs.
+1. **Evaluation runs and human review** — run `claude plugin eval` (see [`evals/README.md`](evals/README.md)), read the outputs, and report scores and bad outputs.
 2. **Better examples** — realistic inputs and outputs that show a skill at its best (or reveal where it fails).
 3. **Fixes to existing skills** — based on evidence from an evaluation or real use.
 4. **New skills** — open a [skill request](https://github.com/devanathsugavasi/devreach/issues/new?template=skill_request.yml) first so we can check it doesn't overlap.
@@ -44,14 +44,14 @@ Content rules:
 
 1. Copy an existing skill directory as a starting point and rename it.
 2. Write the workflow specific to the task. Avoid copying generic safety text; write rules that matter for *this* skill.
-3. Add `evals/cases/<name>.md` with the four case types (normal, missing information, adversarial, quality).
+3. Add four cases under `evals/cases/<name>/`: `1-normal`, `2-missing-information`, `3-adversarial`, `4-quality`, each with a `case.yaml`. Copy an existing skill's cases and change the prompt and the `case-criteria` grader.
 4. Run the checks above.
-5. Install it locally (see README) and run your four cases. Summarize results in the PR.
+5. Run `claude plugin eval . --tag <name> --ablation none` and `python3 scripts/eval_summary.py`. Read the outputs yourself, not only the scores, and summarize them in the PR.
 6. Add it to the table in `README.md` as **experimental**.
 
 ## Promoting a skill to core
 
-A skill becomes **core** when its four cases score ≥ 4 on every rubric dimension, run by someone other than the author. Open a PR that updates the README and links the recorded results.
+A skill becomes **core** when its four cases pass the automated graders **and** a reviewer other than the author scores each output ≥ 4 on every dimension of [`evals/rubric.md`](evals/rubric.md). Open a PR that updates the README and links the recorded results.
 
 ## Commit and PR style
 

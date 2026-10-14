@@ -1,6 +1,6 @@
 ---
 name: audience-research
-description: Defines who a developer project or personal brand is for — audience segments, their real problems, where they spend time, and a positioning statement — using only evidence the user supplies or can collect. Use when a developer isn't sure who their project is for, gets little traction, or wants to sharpen positioning before a launch.
+description: Defines who a developer project or personal brand is for — audience segments, their real problems, where they gather, and a positioning statement — using only evidence the user supplies. Use whenever a developer asks who their project is for, how to position it, why it gets no traction, how it compares to alternatives, or wants user-interview questions or market statistics.
 ---
 
 # Audience Research

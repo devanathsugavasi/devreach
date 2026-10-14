@@ -1,0 +1,18 @@
+{
+  "name": "devreach",
+  "owner": {
+    "name": "Devanath Sugavasi",
+    "url": "https://github.com/devanathsugavasi"
+  },
+  "metadata": {
+    "description": "DevReach: open-source developer growth and marketing skills for Claude Code."
+  },
+  "plugins": [
+    {
+      "name": "devreach",
+      "source": "./",
+      "description": "12 skills for developer branding, content, community launches, outreach, and growth reviews.",
+      "version": "0.1.0"
+    }
+  ]
+}

@@ -1,6 +1,8 @@
 # Manual Evaluation Rubric
 
-Score each output 1–5 on every dimension. A skill is eligible for the **core** label only when it scores **≥ 4 on every dimension across all four cases** in its `cases/<skill>.md` file, run by at least one person other than the author.
+Use this rubric for **human review** of eval outputs (see [`README.md`](README.md)); the automated LLM graders are a first filter only.
+
+Score each output 1–5 on every dimension. A skill is eligible for the **core** label only when it scores **≥ 4 on every dimension across all four of its cases** in `cases/<skill>/`, reviewed by at least one person other than the author.
 
 ## Dimensions
 
@@ -41,10 +43,10 @@ Score each output 1–5 on every dimension. A skill is eligible for the **core**
 
 ## Recording results
 
-Add a row to `evals/results.md` (create it if missing) for each run:
+Add human scores to [`RESULTS.md`](RESULTS.md) under "Human review":
 
 ```
-| Date | Skill | Case | Claude Code version | Model | Accuracy | Useful | Voice | Fit | Safety | Evaluator | Notes |
+| Date | Case | Claude Code version | Model | Accuracy | Useful | Voice | Fit | Safety | Reviewer | Notes |
 ```
 
-Keep outputs that scored ≤ 2 anywhere in `evals/failures/` — they are the most useful material for improving a skill.
+Outputs that scored 2 or lower are the most useful material for improving a skill. Quote them in an issue.

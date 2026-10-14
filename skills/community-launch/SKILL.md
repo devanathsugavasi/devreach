@@ -1,6 +1,6 @@
 ---
 name: community-launch
-description: Plans where and how to share a project in developer communities (subreddits, Hacker News, Discord/Slack servers, forums, Product Hunt) and drafts a separate, rule-aware post for each one. Use when a developer is ready to announce a project and wants to reach people who will care without spamming or getting removed.
+description: Decides where to launch or share a developer project (Hacker News Show HN, subreddits, Discord and Slack communities, Product Hunt, forums) and drafts a separate, rule-aware post for each venue. Use whenever someone asks where to launch, post, promote, or share their app, tool, or library, asks for a Show HN or Reddit post, or asks to post in many communities or get upvotes.
 ---
 
 # Community Launch
@@ -74,6 +74,7 @@ First comment (if applicable): ...
 
 ## Safety
 
+- Do not invent backstory, motivation, feelings, opinions, or habits and put them in the user's mouth ("we did this by hand every time", "this is the work I most want to do", "I wouldn't expect to beat X"), and do not describe how something works beyond what the user or their files say. Where a draft needs one, write a `[bracketed prompt]` for the user to fill in.
 - Never draft posts for communities where the project clearly doesn't fit, even if they are large.
 - Never suggest vote rings, asking friends to upvote, sockpuppet accounts, or reposting after removal to evade moderators.
 - Never suggest cross-posting the same text to many communities at once.

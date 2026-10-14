@@ -1,6 +1,6 @@
 ---
 name: growth-review
-description: Analyzes a project's or creator's supplied metrics and feedback — GitHub stars, traffic, clones, installs, post analytics, issues, comments — to explain what is and isn't working and recommend 1–3 small experiments. Use for a weekly or post-launch review when a developer wants to decide what to do next based on data rather than guesses.
+description: Analyzes a project's or creator's supplied metrics and feedback (GitHub stars, traffic, clones, downloads, post analytics, issues, comments) to explain what is working and recommend 1 to 3 small experiments. Use whenever a developer asks how their repo, project, or posts are doing, shares numbers or analytics, asks what to do next, or asks about buying stars or followers.
 ---
 
 # Growth Review

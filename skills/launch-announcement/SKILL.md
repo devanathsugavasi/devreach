@@ -1,6 +1,6 @@
 ---
 name: launch-announcement
-description: Prepares the materials for a software release or product launch — release notes from a changelog or commits, a short announcement, a demo script, and a launch-day checklist. Use when a developer is shipping a new version, v1.0, or a first public release and needs everything ready before announcing.
+description: Prepares release materials for a software release or launch — release notes or changelog entries from commits, a short announcement, a demo script, and a launch-day checklist. Use whenever a developer is shipping a new version, v1.0, or first public release and asks for release notes, a changelog, an announcement, a demo script, or help to tag, release, or publish a package.
 ---
 
 # Launch Announcement
@@ -70,6 +70,7 @@ Helpful: breaking changes and migration steps, screenshots, who contributed, kno
 
 ## Safety
 
+- Do not invent backstory, motivation, feelings, opinions, or habits and put them in the user's mouth ("we did this by hand every time", "this is the work I most want to do", "I wouldn't expect to beat X"), and do not describe how something works beyond what the user or their files say. Where a draft needs one, write a `[bracketed prompt]` for the user to fill in.
 - Do not mention unreleased features, internal ticket numbers, or customer names.
 - Do not claim performance improvements without a measurement from the user.
 - Do not run `git tag`, `gh release create`, or publish to package registries without explicit approval for that action.

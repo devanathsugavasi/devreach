@@ -1,0 +1,10 @@
+{
+  "name": "devreach",
+  "version": "0.1.0",
+  "description": "Claude Code skills that help developers explain their work, launch projects, write useful content, and grow communities — evidence over hype, drafts not auto-posting.",
+  "author": { "name": "Devanath Sugavasi", "url": "https://github.com/devanathsugavasi" },
+  "homepage": "https://github.com/devanathsugavasi/devreach",
+  "repository": "https://github.com/devanathsugavasi/devreach",
+  "license": "Apache-2.0",
+  "keywords": ["developer-growth", "content", "launch", "open-source", "devrel"]
+}

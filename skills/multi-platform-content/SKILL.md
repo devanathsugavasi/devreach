@@ -1,6 +1,6 @@
 ---
 name: multi-platform-content
-description: Adapts one source idea, article, or announcement into distinct drafts for LinkedIn, X/Twitter, Reddit, Bluesky/Mastodon, and short-form video scripts, each fitting that platform's format and audience. Use when a developer has one piece of content and wants versions for several platforms that don't read like the same text pasted everywhere.
+description: Adapts one source idea, article, or announcement into distinct drafts for LinkedIn, X/Twitter threads, Reddit, Bluesky, Mastodon, and short-form video scripts, each fitting that platform. Use whenever someone wants to repurpose or cross-post existing content, turn an article into a thread or video script, or post the same thing to several platforms or subreddits.
 ---
 
 # Multi-Platform Content
@@ -75,6 +75,7 @@ Body: ...
 
 ## Safety
 
+- Do not invent backstory, motivation, feelings, opinions, or habits and put them in the user's mouth ("we did this by hand every time", "this is the work I most want to do", "I wouldn't expect to beat X"), and do not describe how something works beyond what the user or their files say. Where a draft needs one, write a `[bracketed prompt]` for the user to fill in.
 - Do not add claims that weren't in the source to make a platform version "punchier".
 - Do not suggest posting identical content to multiple subreddits or using multiple accounts.
 - Return drafts only; do not post or schedule.

@@ -27,7 +27,7 @@ AI tools make this worse when they generate the same hype-filled post for every 
 
 Each skill is a folder with a `SKILL.md` that Claude Code loads when your request matches it.
 
-**Status:** *Core* skills have full worked examples and were built first; *experimental* skills are complete but less refined. **No skill has recorded behavioral evaluation results yet** — see [Evaluation](#evaluation-and-limitations).
+**Status:** *Core* skills were built first and have full worked examples; *experimental* skills are complete but less refined. Neither label means human-reviewed yet. See [Evaluation](#evaluation-and-limitations) for automated results per skill.
 
 ### Developer branding
 
@@ -69,49 +69,56 @@ Each skill is a folder with a `SKILL.md` that Claude Code loads when your reques
 
 ## Installation
 
-Clone the repository:
+### Option 1 — Claude Code plugin (recommended)
+
+In Claude Code:
+
+```
+/plugin install devreach --marketplace devanathsugavasi/devreach
+```
+
+On Claude Code versions before 2.1.275, run these two commands instead:
+
+```
+/plugin marketplace add devanathsugavasi/devreach
+/plugin install devreach@devreach
+```
+
+This installs all twelve skills. Plugin skills are namespaced, so they appear as `devreach:project-to-post` and so on. Update with `/plugin update devreach` and remove with `/plugin uninstall devreach`.
+
+### Option 2 — install script (pick individual skills)
 
 ```bash
 git clone https://github.com/devanathsugavasi/devreach.git
+cd devreach
+./install.sh                                # all skills → ~/.claude/skills
+./install.sh project-to-post growth-review  # only these
+./install.sh --project community-launch     # into ./.claude/skills of the current project
+./install.sh --list                         # show available skills
 ```
 
-**Install one skill for all your projects** (personal skills live in `~/.claude/skills/`):
+Reinstalling a skill replaces that skill's folder, so local edits to it are lost. The script never touches skills that aren't part of DevReach.
+
+### Option 3 — copy by hand
 
 ```bash
 mkdir -p ~/.claude/skills && cp -R devreach/skills/project-to-post ~/.claude/skills/
 ```
 
-**Install all twelve:**
-
-```bash
-mkdir -p ~/.claude/skills && cp -R devreach/skills/* ~/.claude/skills/
-```
-
-**Install for one project only** (shared with anyone who clones that project):
-
-```bash
-mkdir -p .claude/skills && cp -R /path/to/devreach/skills/project-to-post .claude/skills/
-```
-
-Restart Claude Code (or start a new session) so it picks up the new skills.
+Start a new Claude Code session after installing so the skills load.
 
 ### Removal
 
 ```bash
-rm -rf ~/.claude/skills/project-to-post
+./install.sh --uninstall                    # remove all DevReach skills
+./install.sh --uninstall project-to-post    # remove one
 ```
 
-Replace the name for other skills, or use `.claude/skills/` for project installs.
-
-### Updating
-
-```bash
-cd devreach && git pull && cp -R skills/project-to-post ~/.claude/skills/
-```
+For plugin installs: `/plugin uninstall devreach`.
 
 ## Quick start
 
-1. Install `project-to-post` as above.
+1. Install DevReach with either option above.
 2. Open Claude Code in any project folder.
 3. Ask:
 
@@ -148,7 +155,7 @@ Every skill follows the same rules:
 
 ## Evaluation and limitations
 
-**Automated checks** verify structure only — frontmatter, required sections, and links:
+**Structural checks** run in CI on every push: frontmatter, required sections, links, eval-case layout, and the install script.
 
 ```bash
 python3 scripts/validate_skills.py
@@ -156,14 +163,20 @@ python3 scripts/check_links.py
 python3 -m unittest discover -s tests
 ```
 
-**Behavioral quality** is evaluated manually. Each skill has four cases in [`evals/cases/`](evals/cases/) (normal, missing information, adversarial, quality) scored with [`evals/rubric.md`](evals/rubric.md). As of v0.1.0, **no evaluation runs have been recorded** — passing the automated checks does not mean the outputs are good.
+**Behavioral checks** use Claude Code's built-in `claude plugin eval`. There are 48 cases, 4 per skill: normal, missing information, adversarial (false claims, leaked secrets, spam requests, prompt injection), and quality. LLM judges grade each one, and a tool check confirms the right skill actually loaded. See [`evals/README.md`](evals/README.md).
+
+Latest recorded run (2026-10-14, one run per case, Sonnet judge): **34 of 48 cases passed every grader**. The matching skill loaded in all 48. Full numbers, run-to-run noise, and the failing cases are in [`evals/RESULTS.md`](evals/RESULTS.md). In short:
+
+- Refusals hold up well. In runs 2 and 3, every adversarial case declined the unsafe part of the request (false claims, vote manipulation, mass outreach, publishing without approval, leaking secrets) and offered a legitimate alternative. `open-source-growth` also reported a hidden prompt injection in a README.
+- The main remaining weakness is **embellishment**: drafts sometimes add plausible backstory, feelings, or explanations the user never gave. `project-to-post` and `technical-storyteller` are most affected.
+- These are automated judges on synthetic prompts, run once each. Nobody has done a human review yet.
 
 Known limitations:
 
 - Tested with Claude Code only. Other agents that read `SKILL.md` may work but haven't been tested.
-- Skills can't see current community rules, platform algorithms, or your analytics — they work from what you provide and tell you what to verify.
-- Output quality depends on the model and on how much real detail you give.
-- Skills reduce, but cannot eliminate, the chance of a model stating something unsupported. Always review drafts before publishing.
+- Installing all twelve skills adds about 1,000 tokens to every Claude Code session for the skill descriptions. Full instructions load only when a skill is used.
+- Skills can't see current community rules, platform algorithms, or your analytics. They work from what you provide and tell you what to verify.
+- **Always review drafts before publishing.** The skills reduce made-up claims but don't eliminate them.
 
 ## Contributing
 

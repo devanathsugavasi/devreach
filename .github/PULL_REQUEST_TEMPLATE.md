@@ -14,7 +14,7 @@
 - [ ] `python3 scripts/validate_skills.py` passes
 - [ ] `python3 scripts/check_links.py` passes
 - [ ] `python3 -m unittest discover -s tests` passes
-- [ ] For skill changes: I ran at least the relevant cases in `evals/cases/` in Claude Code and describe the results below
+- [ ] For skill changes: I ran `claude plugin eval . --tag <skill> --ablation none` and describe the results below
 - [ ] No secrets, personal data, or real customer/employer information in examples
 - [ ] The skill never publishes, posts, or sends anything without explicit user approval
 

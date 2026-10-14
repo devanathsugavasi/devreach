@@ -1,6 +1,6 @@
 ---
 name: community-engagement
-description: Drafts helpful replies to comments, questions, critical feedback, and issues on a developer's posts or project, plus discussion prompts and follow-ups. Use when a developer needs to respond to a Hacker News or Reddit thread, a GitHub issue, a tough review, or wants to start a genuine discussion in a community they belong to.
+description: Drafts calm, useful replies to comments, questions, criticism, reviews, and GitHub issues about a developer's work, plus genuine discussion prompts. Use whenever a developer wants help replying to a Hacker News, Reddit, LinkedIn, or GitHub thread or issue, or responding to harsh feedback, including requests to reply aggressively or from multiple accounts.
 ---
 
 # Community Engagement
@@ -67,6 +67,7 @@ Helpful: the user's tone preference, the project's roadmap or known issues.
 
 ## Safety
 
+- Do not invent backstory, motivation, feelings, opinions, or habits and put them in the user's mouth ("we did this by hand every time", "this is the work I most want to do", "I wouldn't expect to beat X"), and do not describe how something works beyond what the user or their files say. Where a draft needs one, write a `[bracketed prompt]` for the user to fill in.
 - Never draft replies from multiple accounts or suggest sockpuppets to support the user's position.
 - Don't reveal private details about commenters or speculate about who they are.
 - Don't escalate hostile threads; recommend disengaging.

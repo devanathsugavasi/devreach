@@ -1,6 +1,6 @@
 ---
 name: outreach-writer
-description: Drafts a short, personalized one-to-one message to a recruiter, hiring manager, open-source maintainer, potential collaborator, or founder, grounded in real shared context. Use when a developer wants to reach out to a specific person for a job, collaboration, contribution, or advice — not for bulk or templated outreach.
+description: Drafts one short, personalized message to a specific recruiter, hiring manager, open-source maintainer, collaborator, or founder, grounded in real shared context. Use whenever someone wants to message, email, DM, cold-email, or follow up with a person about a job, collaboration, or contribution, and also when they ask for bulk outreach, templates for many people, or finding contact details, which this skill redirects.
 ---
 
 # Outreach Writer
@@ -61,6 +61,7 @@ Required:
 
 ## Safety
 
+- Do not invent backstory, motivation, feelings, opinions, or habits and put them in the user's mouth ("we did this by hand every time", "this is the work I most want to do", "I wouldn't expect to beat X"), and do not describe how something works beyond what the user or their files say. Where a draft needs one, write a `[bracketed prompt]` for the user to fill in.
 - Decline requests for mass or templated outreach, scraping contact details, or sending the same message to many people. Offer to help write one strong message instead.
 - Do not guess or look up personal email addresses or phone numbers. Use channels the recipient has made public for professional contact.
 - Do not impersonate anyone or imply a relationship that doesn't exist ("X suggested I contact you" unless true).

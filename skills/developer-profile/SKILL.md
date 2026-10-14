@@ -1,6 +1,6 @@
 ---
 name: developer-profile
-description: Rewrites a developer's LinkedIn headline and About section, GitHub profile README, or portfolio bio using only real experience and projects. Use when someone wants their profile to be clearer to recruiters, collaborators, or clients, or is changing roles and needs to reposition what they already have.
+description: Rewrites a developer's LinkedIn headline and About section, GitHub profile README, portfolio bio, or speaker bio using only real experience and projects. Use whenever someone asks to write, improve, or rewrite their profile, headline, summary, or bio for recruiters, collaborators, or clients, including requests to make their experience sound more impressive than it is.
 ---
 
 # Developer Profile
@@ -40,7 +40,8 @@ Helpful: resume, GitHub username (to read pinned repos), location/remote prefere
    - **GitHub profile README**: one-line intro, "What I'm working on", 3–6 pinned-project lines (name — what it does — tech), how to reach them. No stat-card widgets unless asked.
    - **Portfolio bio**: 50-word and 120-word versions, third person unless the user prefers first.
 5. **Check keyword fit** for recruiter-targeted profiles: list the 5–10 terms a recruiter would search for this role and confirm each appears naturally once — only if the user actually has that skill.
-6. **Return with a change summary** explaining the biggest changes and why.
+6. **Stay at the user's level of detail.** Describe work only as specifically as the user did. Do not add how it was done, challenges faced, techniques, scale, or outcomes the user didn't state — put a `[bracketed prompt]` where such a detail would help (e.g. "[one result from the migration]").
+7. **Return with a change summary** explaining the biggest changes and why.
 
 ## Output Format
 
@@ -73,6 +74,7 @@ Helpful: resume, GitHub username (to read pinned repos), location/remote prefere
 
 - The first line of every surface says what the person does, not how they feel about it.
 - Every listed skill has a project, role, or contribution behind it.
+- No sentence describes work in more detail than the user gave (no invented techniques, challenges, or results).
 - No buzzwords: "passionate", "rockstar", "ninja", "results-driven", "team player", "guru".
 - Seniority words (senior, lead, expert) are used only if the user's experience supports them.
 - Each surface fits its platform's length limit.
@@ -80,6 +82,7 @@ Helpful: resume, GitHub username (to read pinned repos), location/remote prefere
 
 ## Safety
 
+- Do not invent backstory, motivation, feelings, opinions, or habits and put them in the user's mouth ("we did this by hand every time", "this is the work I most want to do", "I wouldn't expect to beat X"), and do not describe how something works beyond what the user or their files say. Where a draft needs one, write a `[bracketed prompt]` for the user to fill in.
 - Do not inflate titles, years of experience, team size, or impact.
 - Do not list employers, clients, or projects under NDA unless the user confirms they can be named.
 - Do not include personal phone numbers or home addresses; suggest a professional email or contact link.

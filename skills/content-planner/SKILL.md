@@ -1,6 +1,6 @@
 ---
 name: content-planner
-description: Builds a realistic weekly or monthly content calendar for a developer from their actual projects, learning, and releases, sized to the time they really have. Use when someone wants to post consistently about their work, build in public, or plan content around an upcoming launch, but doesn't know what to post or when.
+description: Builds a realistic weekly or monthly content calendar or posting schedule for a developer from their actual projects, learning, and releases, sized to the time they really have. Use whenever someone wants to post consistently, build in public, plan what to post, or plan content around a launch, including requests for daily posting on many platforms or engagement-bait formats.
 ---
 
 # Content Planner

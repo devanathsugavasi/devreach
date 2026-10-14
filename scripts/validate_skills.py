@@ -54,7 +54,10 @@ def parse_frontmatter(text):
         key = key.strip()
         if key in fields:
             raise ValueError(f"duplicate frontmatter key: {key}")
-        fields[key] = value.strip().strip("'\"")
+        value = value.strip()
+        if value[:1] not in ("'", '"') and (": " in value or " #" in value):
+            raise ValueError(f"unquoted value for '{key}' contains ': ' or ' #' (invalid YAML); quote it or reword")
+        fields[key] = value.strip("'\"")
     return fields, "\n".join(lines[end + 1 :])
 
 

@@ -1,6 +1,6 @@
 ---
 name: technical-storyteller
-description: Turns an engineering decision, debugging session, outage, or lesson learned into a long-form technical article or blog post with a clear narrative arc. Use when a developer has a real technical experience worth explaining in depth — a postmortem, a "how we solved X", a migration story — for a blog, dev.to, Hashnode, or an engineering blog.
+description: Turns a real engineering decision, debugging session, outage, incident, migration, or lesson learned into a long-form technical article, blog post, or public postmortem with a clear narrative. Use whenever a developer wants to write up something that happened technically, for a blog, dev.to, Hashnode, Medium, or an engineering blog, including incident write-ups that may contain sensitive details.
 ---
 
 # Technical Storyteller
@@ -36,7 +36,10 @@ Helpful: code snippets, before/after measurements, diagrams, the dead ends tried
    - *Decision record* (choosing tech): context → options → criteria → choice → what happened after.
    - *Migration story*: why move → plan → what went wrong → results → advice.
 4. **Outline first.** Present a 5–8 heading outline with one line each and get a quick confirmation if the user is available; otherwise proceed and note that you did.
-5. **Draft.** Use concrete details: actual error messages, real config snippets, measured numbers. Keep dead ends — they're often the most useful part. Use code blocks for code and commands.
+5. **Draft.** Use concrete details from the material: actual error messages, real config snippets, measured numbers. Keep dead ends — they're often the most useful part. Use code blocks for code and commands.
+   - **Never fill narrative gaps.** If the story needs something the notes don't say (how a clue was found, the exact exception, which thread, why the tool pointed the wrong way), write a visible `[TODO: …]` in the article instead of inventing it.
+   - **Label illustrative code in the article itself** (e.g. a comment `// Illustrative — replace with your real call site`) when the snippet isn't from the user's material.
+   - Don't present general advice as something the team did ("we added a lint rule") unless the notes say so.
 6. **Scrub for confidentiality.** Replace internal hostnames, customer names, IPs, keys, and proprietary numbers with placeholders and list what you replaced.
 7. **Write title options and a summary** (2–3 sentences for previews/SEO).
 
@@ -67,12 +70,14 @@ Helpful: code snippets, before/after measurements, diagrams, the dead ends tried
 
 - The lesson is stated explicitly, near the start and again at the end.
 - At least one dead end or wrong assumption is included.
-- Every number in the article was supplied by the user or present in their material.
+- Every number, event, and cause in the article was supplied by the user or present in their material; gaps are `[TODO]`s, not inventions.
+- Any code not taken from the user's material is labeled illustrative in the article.
 - Code snippets are syntactically plausible and labeled with a language.
 - A reader unfamiliar with the user's company can follow every paragraph.
 
 ## Safety
 
+- Do not invent backstory, motivation, feelings, opinions, or habits and put them in the user's mouth ("we did this by hand every time", "this is the work I most want to do", "I wouldn't expect to beat X"), and do not describe how something works beyond what the user or their files say. Where a draft needs one, write a `[bracketed prompt]` for the user to fill in.
 - Remove secrets, internal URLs, customer data, and security-sensitive details (e.g. an unpatched vulnerability) before drafting.
 - If the story involves a security incident, recommend the user get approval from their security team before publishing.
 - Don't assign blame to named individuals; write postmortem-style, blameless.

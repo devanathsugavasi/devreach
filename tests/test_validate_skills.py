@@ -3,6 +3,8 @@
 Run: python3 -m unittest discover -s tests
 """
 
+import os
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -83,6 +85,11 @@ class ValidateSkillTests(unittest.TestCase):
         d = make_skill(self.root, "good-skill", fm)
         self.assertIn("duplicate", validate_skills.validate_skill(d)[0])
 
+    def test_unquoted_colon_in_value(self):
+        fm = "---\nname: good-skill\ndescription: Does this: and that\n---"
+        d = make_skill(self.root, "good-skill", fm)
+        self.assertIn("invalid YAML", validate_skills.validate_skill(d)[0])
+
     def test_missing_section(self):
         body = SECTIONS.replace("## Safety", "## Notes")
         d = make_skill(self.root, "good-skill", VALID_FM, body)
@@ -108,6 +115,52 @@ class RepoSkillsTests(unittest.TestCase):
         results = validate_skills.validate_all(ROOT / "skills")
         self.assertEqual(len(results), 12)
         self.assertEqual({k: v for k, v in results.items() if v}, {})
+
+
+class EvalCaseTests(unittest.TestCase):
+    def test_every_skill_has_four_cases(self):
+        for skill in sorted(p.name for p in (ROOT / "skills").iterdir() if p.is_dir()):
+            cases = sorted((ROOT / "evals" / "cases" / skill).glob("*/case.yaml"))
+            self.assertEqual(len(cases), 4, skill)
+            kinds = {c.parent.name.split("-", 1)[1] for c in cases}
+            self.assertEqual(kinds, {"normal", "missing-information", "adversarial", "quality"}, skill)
+            for c in cases:
+                text = c.read_text(encoding="utf-8")
+                self.assertIn('schema_version: "1.0"', text, c)
+                self.assertIn(f"name: {skill}--{c.parent.name}", text, c)
+                self.assertIn("graders:", text, c)
+
+
+class InstallScriptTests(unittest.TestCase):
+    def run_install(self, home, *args, cwd=None):
+        env = dict(os.environ, HOME=str(home))
+        return subprocess.run(["bash", str(ROOT / "install.sh"), *args], env=env, cwd=cwd,
+                              capture_output=True, text=True)
+
+    def test_install_uninstall_cycle(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            home = Path(tmp)
+            dest = home / ".claude" / "skills"
+            (dest / "my-own-skill").mkdir(parents=True)
+            self.assertEqual(self.run_install(home).returncode, 0)
+            self.assertEqual(len(list(dest.glob("*/SKILL.md"))), 12)
+            r = self.run_install(home, "--uninstall", "project-to-post")
+            self.assertEqual(r.returncode, 0)
+            self.assertFalse((dest / "project-to-post").exists())
+            self.run_install(home, "--uninstall")
+            self.assertEqual([p.name for p in dest.iterdir()], ["my-own-skill"])
+
+    def test_project_install(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            r = self.run_install(Path(tmp), "--project", "growth-review", cwd=tmp)
+            self.assertEqual(r.returncode, 0)
+            self.assertTrue((Path(tmp) / ".claude" / "skills" / "growth-review" / "SKILL.md").is_file())
+
+    def test_rejects_unknown_skill(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            r = self.run_install(Path(tmp), "--uninstall", "../../etc")
+            self.assertEqual(r.returncode, 1)
+            self.assertIn("not a DevReach skill", r.stderr)
 
 
 class CheckLinksTests(unittest.TestCase):
