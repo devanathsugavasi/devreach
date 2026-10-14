@@ -174,7 +174,7 @@ Latest recorded run (2026-10-14, one run per case, Sonnet judge): **34 of 48 cas
 Known limitations:
 
 - Tested with Claude Code only. Other agents that read `SKILL.md` may work but haven't been tested.
-- Installing all twelve skills adds about 1,000 tokens to every Claude Code session for the skill descriptions. Full instructions load only when a skill is used.
+- Installing all twelve skills adds about 1,200 tokens to every Claude Code session for the skill descriptions. Full instructions load only when a skill is used.
 - Skills can't see current community rules, platform algorithms, or your analytics. They work from what you provide and tell you what to verify.
 - **Always review drafts before publishing.** The skills reduce made-up claims but don't eliminate them.
 
