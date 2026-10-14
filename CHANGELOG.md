@@ -4,6 +4,10 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+### Added
+
+- Bluesky and Mastodon norms in the `community-launch` community guide (#11, thanks @Enard52).
+
 ## [0.1.1] - 2026-10-14
 
 ### Security
