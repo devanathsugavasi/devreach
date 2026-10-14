@@ -30,6 +30,7 @@ Every skill lives in `skills/<name>/` and must have a `SKILL.md` with:
 - Frontmatter with `name` (matches the directory, lowercase-hyphenated, ≤ 64 chars) and `description` (≤ 1024 chars, says what it does **and** when to use it).
 - These sections: `When to Use`, `Workflow`, `Output Format`, `Quality Checklist`, `Safety`, `Example` (or `Examples`).
 - Fewer than 500 lines. Put long reference material in `references/` and link to it.
+- Markdown only: no scripts, binaries, symlinks, HTML comments, invisible Unicode, or frontmatter keys besides `name`, `description`, `license`. The validator enforces this; see [SECURITY.md](SECURITY.md).
 
 Content rules:
 

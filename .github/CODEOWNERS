@@ -1,0 +1,7 @@
+# Skill instructions run inside users' agents, so every change needs maintainer review.
+*                    @devanathsugavasi
+/skills/             @devanathsugavasi
+/.claude-plugin/     @devanathsugavasi
+/.github/            @devanathsugavasi
+/install.sh          @devanathsugavasi
+/evals/cases/**/setup.sh @devanathsugavasi

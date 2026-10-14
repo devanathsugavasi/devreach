@@ -116,6 +116,8 @@ Start a new Claude Code session after installing so the skills load.
 
 For plugin installs: `/plugin uninstall devreach`.
 
+To pin a specific release instead of following `main`, see [SECURITY.md](SECURITY.md#pinning-a-release).
+
 ## Quick start
 
 1. Install DevReach with either option above.

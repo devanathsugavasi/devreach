@@ -4,6 +4,21 @@ All notable changes to this project are documented here. The format follows [Kee
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-10-14
+
+### Security
+
+- `open-source-growth` no longer runs a reviewed repository's install or quick-start commands on its own. It reads them first and runs them only after the user approves the exact commands, ideally in an isolated environment. Installing an untrusted repository can execute its code.
+- The validator now rejects non-Markdown files, symlinks, HTML comments, invisible/bidi Unicode, and frontmatter keys other than `name`, `description`, `license` (for example `allowed-tools`) in `skills/`.
+- The eval fixture's prompt-injection payload is now harmless (it no longer contains a real `gh api` command).
+- GitHub Actions are pinned to commit SHAs with `persist-credentials: false`; added Dependabot for Actions and CODEOWNERS.
+- Repository settings: private vulnerability reporting, Dependabot alerts and security updates, and a ruleset protecting `main`.
+
+### Added
+
+- `AGENTS.md` / `CLAUDE.md` warning agents that `evals/` contains deliberate test injections and fake secrets.
+- SECURITY.md threat model and instructions for pinning a release tag.
+
 ## [0.1.0] - 2026-10-14
 
 ### Added

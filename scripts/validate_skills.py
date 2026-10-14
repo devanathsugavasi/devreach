@@ -8,6 +8,8 @@ Checks every directory under skills/ for:
   - `description` non-empty, <= 1024 chars, no angle brackets
   - the section headings every DevReach skill must have
   - SKILL.md under 500 lines (keep long material in references/)
+  - security: only allowlisted frontmatter keys (no `allowed-tools`), only
+    Markdown files, no symlinks, no HTML comments, no invisible/bidi Unicode
 
 Usage: python3 scripts/validate_skills.py [skills_dir]
 Exits 1 if any skill has errors. Standard library only.
@@ -21,6 +23,9 @@ NAME_RE = re.compile(r"^[a-z0-9]+(-[a-z0-9]+)*$")
 MAX_NAME = 64
 MAX_DESCRIPTION = 1024
 MAX_LINES = 500
+ALLOWED_KEYS = {"name", "description", "license"}
+# Zero-width, bidi-control, and BOM characters can hide instructions from reviewers.
+HIDDEN_CHARS_RE = re.compile("[\u00ad\u200b-\u200f\u202a-\u202e\u2060-\u2064\u2066-\u2069\ufeff]")
 REQUIRED_SECTIONS = [
     "When to Use",
     "Workflow",
@@ -61,6 +66,29 @@ def parse_frontmatter(text):
     return fields, "\n".join(lines[end + 1 :])
 
 
+def security_errors(skill_dir):
+    """Checks that keep a skill reviewable: Markdown only, nothing hidden."""
+    errors = []
+    for path in sorted(skill_dir.rglob("*")):
+        rel = path.relative_to(skill_dir)
+        if path.is_symlink():
+            errors.append(f"{rel}: symlinks are not allowed")
+            continue
+        if path.is_dir():
+            continue
+        if path.suffix != ".md":
+            errors.append(f"{rel}: only .md files are allowed in skills (no scripts or binaries)")
+            continue
+        text = path.read_text(encoding="utf-8", errors="replace")
+        if "<!--" in text:
+            errors.append(f"{rel}: HTML comments are not allowed (they hide text from reviewers)")
+        match = HIDDEN_CHARS_RE.search(text)
+        if match:
+            line = text.count("\n", 0, match.start()) + 1
+            errors.append(f"{rel}:{line}: invisible or bidirectional Unicode character U+{ord(match.group()):04X}")
+    return errors
+
+
 def validate_skill(skill_dir):
     """Return a list of error strings for one skill directory."""
     skill_file = skill_dir / "SKILL.md"
@@ -72,7 +100,9 @@ def validate_skill(skill_dir):
     except ValueError as exc:
         return [str(exc)]
 
-    errors = []
+    errors = security_errors(skill_dir)
+    for key in sorted(set(fields) - ALLOWED_KEYS):
+        errors.append(f"frontmatter key '{key}' is not allowed (allowed: {', '.join(sorted(ALLOWED_KEYS))})")
     name = fields.get("name", "")
     if not name:
         errors.append("frontmatter missing 'name'")
